@@ -1,105 +1,28 @@
-import { FiGithub } from "solid-icons/fi";
-import { TiSocialLinkedin } from "solid-icons/ti";
-import { createSignal, onMount } from "solid-js";
+import { BsLinkedin } from "solid-icons/bs";
 
 export const Footer = () => {
-  const trieveApiKey = import.meta.env.VITE_TRIEVE_API_KEY as string;
-  const trieveBaseURL = import.meta.env.VITE_TRIEVE_API_URL as string;
-  const [count, setCount] = createSignal(0);
-
-  function extractLimit(str: string) {
-    const match = str.match(/Limit of (\d+)/);
-    if (match && match[1]) {
-      return parseInt(match[1], 10);
-    }
-    return null;
-  }
-
-  onMount(() => {
-    void fetch(trieveBaseURL + `/chunk/count`, {
-      method: "POST",
-      body: JSON.stringify({
-        query: "test",
-        search_type: "fulltext",
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        "TR-Dataset": import.meta.env.VITE_TRIEVE_DATASET_ID as string,
-        "X-API-VERSION": "V2",
-        Authorization: trieveApiKey,
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          // If the response is not OK, throw an error with the response
-          return response.text().then((text) => {
-            throw new Error(text);
-          });
-        }
-        return response.json(); // If response is OK, parse JSON
-      })
-      .then((data) => {
-        // Handle successful response
-        console.log("Success:", data);
-      })
-      .catch((error) => {
-        // Try to parse the error message
-        const errorMessage = error.message;
-        setCount(extractLimit(errorMessage) || 0);
-      });
-  });
   return (
-    <header class="flex min-h-[24px] items-center justify-center border-t border-[#ff6600] px-2 py-[2px]">
-      <div class="flex flex-wrap items-center justify-center py-4 text-[8pt]">
-        <a
-          class="flex items-center hover:underline"
-          href="https://github.com/devflowinc/trieve"
-        >
-          <FiGithub class="mr-0.5 h-3 w-3" /> Star Us
+    <footer class="flex justify-center bg-white p-2">
+      <div class="w-full max-w-screen-2xl items-center">
+        <a class="flex items-center py-2" href="/">
+          <p class="pr-2">
+            <img
+              src="https://cdn.trieve.ai/trieve-logo.png"
+              alt="Trieve Logo"
+              class="h-14 w-14 border border-white"
+            />
+          </p>
+          <p class="text-lg">SolidJS Search and RAG starter</p>
         </a>
-        <span class="px-1">|</span>
-        <a
-          class="flex items-center hover:underline"
-          href="https://discord.gg/eBJXXZDB8z"
-        >
-          Discord
-        </a>
-        <span class="px-1">|</span>
-        <a
-          class="flex items-center hover:underline"
-          href="https://matrix.to/#/#trieve-general:trieve.ai"
-        >
-          Matrix
-        </a>
-        <span class="px-1">|</span>
-        <a
-          class="flex items-center hover:underline"
-          href="mailto:humans@trieve.ai"
-        >
-          humans@trieve.ai
-        </a>
-        <span class="px-1">|</span>
-        <a href="https://dashboard.trieve.ai" class="hover:underline">
-          Get Started with Trieve (1k chunks free)
-        </a>
-        <span class="px-1">|</span>
-        <a href="https://docs.trieve.ai" class="hover:underline">
-          Docs
-        </a>
-        <span class="px-1">|</span>
-        <a href="https://x.com/trieveai" class="hover:underline">
-          𝕏
-        </a>
-        <span class="px-1">|</span>
-        <a
-          href="https://www.linkedin.com/company/trieveai"
-          class="hover:underline"
-        >
-          <TiSocialLinkedin class="h-3 w-3" />
-        </a>
-        <span class="px-1">|</span>
-        <span>{count().toLocaleString()} items in index</span>
+        <div class="flex h-0.5 w-full bg-stone-100" />
+        <div class="flex w-full items-center gap-x-2 py-2">
+          <a href="https://x.com/trieve.ai">𝕏</a>
+          <a href="https://www.linkedin.com/company/trieveai">
+            <BsLinkedin />
+          </a>
+          <div class="flex-1" />
+        </div>
       </div>
-    </header>
+    </footer>
   );
 };

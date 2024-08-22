@@ -1,4 +1,6 @@
 import { Footer } from "../components/Footer";
+import Header from "../components/Header";
+import ShowToast from "../components/ShowToast";
 
 const defaultScoreThreshold = (searchType: string): number => {
   switch (searchType) {
@@ -19,11 +21,11 @@ export const SearchPage = () => {
   const trieveDatasetId = import.meta.env.VITE_TRIEVE_DATASET_ID as string;
 
   return (
-    <>
-      <main class="mx-auto bg-[#F6F6F0] font-verdana text-[13.33px] sm:bg-hn md:m-2 md:mx-auto md:w-[85%]">
-        Hello World
-        <Footer />
-      </main>
-    </>
+    <div>
+      <Header />
+      <div class="bg-stone-100">Hello World</div>
+      <Footer />
+      <ShowToast />
+    </div>
   );
 };
