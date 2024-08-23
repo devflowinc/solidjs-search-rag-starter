@@ -36,7 +36,6 @@
     "@corvu/resizable": "^0.2.2",
     "@fingerprintjs/fingerprintjs": "^4.4.3",
     "@solidjs/router": "^0.14.1",
-    "trieve-ts-sdk": "file:/home/skeptrune/git_projects/devflowinc/trieve/clients/ts-sdk",
     "chart.js": "^4.4.3",
     "chartjs-adapter-date-fns": "^3.0.0",
     "clsx": "^2.1.1",
@@ -54,6 +53,7 @@
     "solid-markdown": "^2.0.13",
     "tailwind-merge": "^2.4.0",
     "terracotta": "^1.0.5",
+    "trieve-ts-sdk": "^0.0.1",
     "vite-plugin-runtime-env": "^0.1.1"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
